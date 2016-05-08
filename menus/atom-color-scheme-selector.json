@@ -1,0 +1,26 @@
+{
+  "context-menu": {
+    "atom-text-editor": [
+      {
+        "label": "Toggle atom-color-scheme-selector",
+        "command": "atom-color-scheme-selector:toggle"
+      }
+    ]
+  },
+  "menu": [
+    {
+      "label": "Packages",
+      "submenu": [
+        {
+          "label": "atom-color-scheme-selector",
+          "submenu": [
+            {
+              "label": "Toggle",
+              "command": "atom-color-scheme-selector:toggle"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
