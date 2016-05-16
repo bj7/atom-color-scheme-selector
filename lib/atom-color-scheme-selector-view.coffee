@@ -58,7 +58,7 @@ module.exports = class AtomColorSchemeSelectorView extends SelectListView
   # @return {string}      displayable string
   #
   viewForItem: (item) ->
-    "<li>" + item + "</li>"
+    "<li>" + item.name + "</li>"
 
   # Implements confirmation function from parent as required by SelectListView
   #

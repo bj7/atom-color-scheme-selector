@@ -6,9 +6,8 @@ module.exports = class AtomColorSchemeSelectorColorsDb
     # expand filter of Array to filter out any theme with a `-ui` in it
     # since that is a UI theme and not a syntax theme
     Array::filter = (func) -> x for x in this when func(x)
-    @curList = atom.themes.getLoadedThemeNames()
-    @curList = @curList.filter (x) -> !/-ui/.test(x)
-    # console.log @curList
+    @curList = atom.themes.getLoadedThemes()
+    console.log @curList
     return @curList
 
   save: (item) ->
