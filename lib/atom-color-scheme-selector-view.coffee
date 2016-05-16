@@ -22,6 +22,13 @@ module.exports = class AtomColorSchemeSelectorView extends SelectListView
   getElement: ->
     @element
 
+  # Returns the key that atom-space-pen-views should filter by in the search
+  # bar.
+  #
+  # @return {string} Name of the property to filter by in the search bar
+  getFilterKey: () ->
+    return "name"
+
   # Takes the list and breaks it into an array of items before using the
   # parent setItems() to place the items into the display.
   #
@@ -39,14 +46,23 @@ module.exports = class AtomColorSchemeSelectorView extends SelectListView
     # @panel.show()
     #  super function to insert array into list for use in viewForItem
     @setItems(schemes)
+
+  show: ->
+    @storeFocusedElement()
+    @panel ?= atom.workspace.addModalPanel(item: this)
+    @panel.show()
     @focusFilterEditor()
 
   # Public function to accept the setting of the list from the controller.
   # @param {object} list list of color schemes
   setList: (list, db) ->
+    # @show()
     @showSchemes(list)
     @db = db
 
+  # Returns the filter string from the search bar to search on
+  #
+  # @return {string} String to search against
   getFilterQuery: () ->
     filter = @filterEditorView.getText()
     return filter
@@ -58,7 +74,7 @@ module.exports = class AtomColorSchemeSelectorView extends SelectListView
   # @return {string}      displayable string
   #
   viewForItem: (item) ->
-    "<li>" + item.name + "</li>"
+    "<li>" + item.name + "<br><p>" + item.metadata.description + "</p></li>"
 
   # Implements confirmation function from parent as required by SelectListView
   #
